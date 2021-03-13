@@ -35,20 +35,26 @@ personMaker('Katie', 'southerners', 'adult');
 personMaker('Nolan', 'southerners', 'child');
 personMaker('Reese', 'southerners', 'child');
 
-console.log(people);
-
-
-function assignToSimmonsFamily() {
-    const participatingFamilies = ['simmonsSquad', 'herronHill', 'southerners'];
-    const simmonsFam = [];
-    for (i = 0; i < participatingFamilies.length; i++) {
-        for (j = 0; j < person.length; j++) {
-            if (person.family === i) {
-                person.push(simmonsFam) 
-            };
-        };
-    };
-    console.log(simmonsFam)
+//function to assign people into Simmons Secret Santa
+const simmonsFamily = () => {
+    const family = [];
+    for (let i = 0; i < people.length; i++) {
+        if (people[i].family === 'simmonsSquad' || people[i].family === 'herronHill' || people[i].family === 'southerners' ) {
+            family.push(people[i]);
+        }
+    }
+    return family
 };
+//console.log(simmonsFamily());
 
-//assignToSimmonsFamily();
+//function to assign people into Hanrahan Secret Santa
+const hanrahanFamily = () => {
+    const family = [];
+    for (let i = 0; i < people.length; i++) {
+        if (people[i].family === 'simmonsSquad' || people[i].family === 'kamClan' || people[i].family === 'hanFam' ) {
+            family.push(people[i]);
+        }
+    }
+    return family
+};
+//console.log(hanrahanFamily());
