@@ -1,11 +1,14 @@
+//array to hold the people created by the program
+const people = [];
+
 //factory function to create the list of participating members 
 function personMaker(name, family, role) {
-    const person = {
-        name,
-        family,
-        role,
+    person = {
+        name: name,
+        family: family,
+        role: role,
     }
-    return person
+    people.push(person);
 };
 
 //make simmonsSquad
@@ -32,13 +35,20 @@ personMaker('Katie', 'southerners', 'adult');
 personMaker('Nolan', 'southerners', 'child');
 personMaker('Reese', 'southerners', 'child');
 
-
+console.log(people);
 
 
 function assignToSimmonsFamily() {
     const participatingFamilies = ['simmonsSquad', 'herronHill', 'southerners'];
     const simmonsFam = [];
-    for (i = 0; i < person.length; i++) {
-        if (person.family === '')
-    }
+    for (i = 0; i < participatingFamilies.length; i++) {
+        for (j = 0; j < person.length; j++) {
+            if (person.family === i) {
+                person.push(simmonsFam) 
+            };
+        };
+    };
+    console.log(simmonsFam)
 };
+
+//assignToSimmonsFamily();
