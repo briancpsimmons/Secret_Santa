@@ -58,3 +58,22 @@ const hanrahanFamily = () => {
     return family
 };
 //console.log(hanrahanFamily());
+
+//function to randomly assign Secret Santa across families
+const matching = arr => {
+    var elligibleFamily = []; 
+    var pairs = [];
+    for (let i = 0; i < arr.length; i++) {
+        elligibleFamily = (arr[i].family !== arr[i].family)
+        let randomMember = []
+        do {
+            randomMember = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))];
+            pairs.push(`${arr[i].name} got ${randomMember.name}`)
+        }
+        while (arr[i].family !== randomMember.family);
+    }
+    return pairs
+};
+
+console.log(matching(simmonsFamily()));
+console.log(matching(hanrahanFamily()));
