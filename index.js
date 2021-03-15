@@ -45,7 +45,6 @@ const simmonsFamily = () => {
     }
     return family
 };
-//console.log(simmonsFamily());
 
 //function to assign people into Hanrahan Secret Santa
 const hanrahanFamily = () => {
@@ -57,20 +56,28 @@ const hanrahanFamily = () => {
     }
     return family
 };
-//console.log(hanrahanFamily());
 
-//function to randomly assign Secret Santa across families
+//function to randomly assign Secret Santas to recipients across families
 const matching = arr => {
-    var elligibleFamily = []; 
-    var pairs = [];
+    var pairs = {
+        santa: [], 
+        recipient: [],
+    };
+    var elligibleFamily = [];
+    var inelligibleFamily = [];
     for (let i = 0; i < arr.length; i++) {
-        elligibleFamily = (arr[i].family !== arr[i].family)
-        let randomMember = []
-        do {
-            randomMember = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))];
-            pairs.push(`${arr[i].name} got ${randomMember.name}`)
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[i].family !== arr[j].family) {
+                elligibleFamily.push(arr[j])
+            } else {
+                inelligibleFamily.push(arr[j])
+            }
         }
-        while (arr[i].family !== randomMember.family);
+        pairs.santa.push(arr[i].name);
+        do {
+            var randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))].name;
+            pairs.recipient.push(randomElligible);
+        } while (pairs.recipient === randomElligible.name);
     }
     return pairs
 };
