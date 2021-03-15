@@ -74,6 +74,7 @@ const matching = arr => {
             }
         }
         pairs.santa.push(arr[i].name);
+    //stuck here trying to assign the recipients into the Santas randomly and without repeating across santas
         do {
             var randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))].name;
             pairs.recipient.push(randomElligible);
