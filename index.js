@@ -58,30 +58,34 @@ const hanrahanFamily = () => {
 };
 
 //function to randomly assign Secret Santas to recipients across families
-const matching = arr => {
+const createPairs = arr => {
     var pairs = {
         santa: [], 
         recipient: [],
     };
-    var elligibleFamily = [];
-    var inelligibleFamily = [];
+    var usedFamily = [];
     for (let i = 0; i < arr.length; i++) {
+        var elligibleFamily = [];
+        var inelligibleFamily = [];
         for (let j = 0; j < arr.length; j++) {
             if (arr[i].family !== arr[j].family) {
                 elligibleFamily.push(arr[j])
             } else {
                 inelligibleFamily.push(arr[j])
             }
-        }
-        pairs.santa.push(arr[i].name);
-    //stuck here trying to assign the recipients into the Santas randomly and without repeating across santas
+        };
+ //need to loop through the elligibile family array and pick a random person that is not also already in usedFamily   
+        let randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))].name;
         do {
-            var randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))].name;
+            usedFamily.push(randomElligible);
             pairs.recipient.push(randomElligible);
-        } while (pairs.recipient === randomElligible.name);
+        }
+        while (randomElligible !== usedFamily);
     }
+//pushes the santa and final recipient into the pairs array
+    pairs.santa.push(arr[i].name);
     return pairs
 };
 
-console.log(matching(simmonsFamily()));
-console.log(matching(hanrahanFamily()));
+console.log(createPairs(simmonsFamily()));
+console.log(createPairs(hanrahanFamily()));
