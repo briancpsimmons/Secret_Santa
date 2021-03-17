@@ -63,7 +63,7 @@ const createPairs = arr => {
         santa: [], 
         recipient: [],
     };
-    var usedFamily = [];
+    var usedFamily = ['default'];
     for (let i = 0; i < arr.length; i++) {
         var elligibleFamily = [];
         var inelligibleFamily = [];
@@ -74,16 +74,23 @@ const createPairs = arr => {
                 inelligibleFamily.push(arr[j])
             }
         };
- //need to loop through the elligibile family array and pick a random person that is not also already in usedFamily   
-        let randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))].name;
+//need to loop through the elligibile family array and pick a random person that is not also already in usedFamily   
         do {
-            usedFamily.push(randomElligible);
-            pairs.recipient.push(randomElligible);
+            let wastedFamily =[];
+            let randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))];
+            for (let k = 0; k < usedFamily.length; k++) {
+                if (randomElligible !== usedFamily[k]) {
+                    pairs.recipient.push(randomElligible);
+                } else {
+                    wastedFamily.push(randomElligible)
+                }
+                usedFamily.push(randomElligible);
+            }
         }
-        while (randomElligible !== usedFamily);
-    }
-//pushes the santa and final recipient into the pairs array
+        while (usedFamily.length !== pairs.santa.length);
+    };
     pairs.santa.push(arr[i].name);
+//pushes the santa and final recipient into the pairs array
     return pairs
 };
 
