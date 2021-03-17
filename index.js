@@ -59,38 +59,36 @@ const hanrahanFamily = () => {
 
 //function to randomly assign Secret Santas to recipients across families
 const createPairs = arr => {
+//holding variable for my final matched pairs
     var pairs = {
         santa: [], 
         recipient: [],
     };
-    var usedFamily = ['default'];
+//holding variable for family members already matched as receipients
+    var usedFamily = [];
     for (let i = 0; i < arr.length; i++) {
         var elligibleFamily = [];
         var inelligibleFamily = [];
+//this part creates the list of ellegibile family members for each member of the input array
         for (let j = 0; j < arr.length; j++) {
             if (arr[i].family !== arr[j].family) {
-                elligibleFamily.push(arr[j])
+                elligibleFamily.push(arr[j].name)
             } else {
-                inelligibleFamily.push(arr[j])
+                inelligibleFamily.push(arr[j].name)
             }
         };
-//need to loop through the elligibile family array and pick a random person that is not also already in usedFamily   
+//STUCK HERE!!!
+//need to loop through the elligibile family array and pick a random person that has not already been paired   
         do {
-            let wastedFamily =[];
-            let randomElligible = elligibleFamily[(Math.floor(Math.random() * elligibleFamily.length))];
-            for (let k = 0; k < usedFamily.length; k++) {
-                if (randomElligible !== usedFamily[k]) {
-                    pairs.recipient.push(randomElligible);
-                } else {
-                    wastedFamily.push(randomElligible)
-                }
-                usedFamily.push(randomElligible);
-            }
+            randomElligible = elligibleFamily[Math.floor(Math.random() * elligibleFamily.length)];
+            pairs.recipient.push(randomElligible);
+            usedFamily.push(randomElligible);
         }
-        while (usedFamily.length !== pairs.santa.length);
-    };
+        while (usedFamily === randomElligible)
+//pushes santa values into the pairs object
     pairs.santa.push(arr[i].name);
-//pushes the santa and final recipient into the pairs array
+    };
+//returns each santa + recipient matched pair
     return pairs
 };
 
