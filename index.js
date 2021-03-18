@@ -65,26 +65,27 @@ const createPairs = arr => {
         recipient: [],
     };
 //holding variable for family members already matched as receipients
-    var usedFamily = [];
+    var usedFamilyMembers = [];
     for (let i = 0; i < arr.length; i++) {
-        var elligibleFamily = [];
-        var inelligibleFamily = [];
-//this part creates the list of ellegibile family members for each member of the input array
+        var elligibleFamilyMembers = [];
+        var inelligibleFamilyMembers = [];
+//this part creates the list of ellegibile family members for each member of the input array: SH made this work for me
         for (let j = 0; j < arr.length; j++) {
-            if (arr[i].family !== arr[j].family) {
-                elligibleFamily.push(arr[j].name)
+            if (arr[i].family !== arr[j].family && (usedFamilyMembers.indexOf(arr[j].name) === -1)) {
+                elligibleFamilyMembers.push(arr[j].name)
             } else {
-                inelligibleFamily.push(arr[j].name)
+                inelligibleFamilyMembers.push(arr[j].name)
             }
         };
 //STUCK HERE!!!
 //need to loop through the elligibile family array and pick a random person that has not already been paired   
-        do {
-            randomElligible = elligibleFamily[Math.floor(Math.random() * elligibleFamily.length)];
+        //do 
+        {
+            randomElligible = elligibleFamilyMembers[Math.floor(Math.random() * elligibleFamilyMembers.length)];
             pairs.recipient.push(randomElligible);
-            usedFamily.push(randomElligible);
+            usedFamilyMembers.push(randomElligible);
         }
-        while (usedFamily === randomElligible)
+        //while (usedFamily === randomElligible)
 //pushes santa values into the pairs object
     pairs.santa.push(arr[i].name);
     };
